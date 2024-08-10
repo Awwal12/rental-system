@@ -15,7 +15,7 @@ public class Property {
     private Long propertyId;
 
     @Column(name = "landlord_id", nullable = false)
-    private Integer landlordId;
+    private Long landlordId;
 
     @Column(name = "title", nullable = false, length = 100)
     private String title;
@@ -55,7 +55,7 @@ public class Property {
     public Property() {
     }
 
-    public Property(Integer landlordId, String title, String description, String address, String city, String state, String zipCode, String country, BigDecimal pricePerNight, String propertyType) {
+    public Property(Long landlordId, String title, String description, String address, String city, String state, String zipCode, String country, BigDecimal pricePerNight, String propertyType) {
         this.landlordId = landlordId;
         this.title = title;
         this.description = description;
@@ -78,11 +78,11 @@ public class Property {
         this.propertyId = propertyId;
     }
 
-    public Integer getLandlordId() {
+    public Long getLandlordId() {
         return landlordId;
     }
 
-    public void setLandlordId(Integer landlordId) {
+    public void setLandlordId(Long landlordId) {
         this.landlordId = landlordId;
     }
 

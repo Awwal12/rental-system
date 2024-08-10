@@ -14,10 +14,10 @@ public class Bookings {
     private Long bookingId;
 
     @Column(nullable = false)
-    private Integer tenantId;
+    private Long tenantId;
 
     @Column(nullable = false)
-    private Integer propertyId;
+    private Long propertyId;
 
     @Column(nullable = false)
     private LocalDate startDate;
@@ -32,10 +32,32 @@ public class Bookings {
     private String status;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tenant_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    private User tenant;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "property_id", referencedColumnName = "property_id", insertable = false, updatable = false)
+    private Property property;
+
+    // Constructors
+    public Bookings() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public Bookings(Long tenantId, Long propertyId, LocalDate startDate, LocalDate endDate, BigDecimal totalPrice, String status) {
+        this.tenantId = tenantId;
+        this.propertyId = propertyId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.totalPrice = totalPrice;
+        this.status = status;
+        this.createdAt = LocalDateTime.now();
+    }
 
     // Getters and Setters
-
     public Long getBookingId() {
         return bookingId;
     }
@@ -44,19 +66,19 @@ public class Bookings {
         this.bookingId = bookingId;
     }
 
-    public Integer getTenantId() {
+    public Long getTenantId() {
         return tenantId;
     }
 
-    public void setTenantId(Integer tenantId) {
+    public void setTenantId(Long tenantId) {
         this.tenantId = tenantId;
     }
 
-    public Integer getPropertyId() {
+    public Long getPropertyId() {
         return propertyId;
     }
 
-    public void setPropertyId(Integer propertyId) {
+    public void setPropertyId(Long propertyId) {
         this.propertyId = propertyId;
     }
 
@@ -98,5 +120,50 @@ public class Bookings {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public User getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(User tenant) {
+        this.tenant = tenant;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
+    // equals and hashCode methods
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bookings bookings = (Bookings) o;
+        return bookingId != null && bookingId.equals(bookings.bookingId);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "Bookings{" +
+                "bookingId=" + bookingId +
+                ", tenantId=" + tenantId +
+                ", propertyId=" + propertyId +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", totalPrice=" + totalPrice +
+                ", status='" + status + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }
