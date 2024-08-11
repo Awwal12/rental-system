@@ -11,44 +11,42 @@ public class Property {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "property_id")
     private Long propertyId;
 
-    @Column(name = "landlord_id", nullable = false)
+    @Column(nullable = false)
     private Long landlordId;
 
-    @Column(name = "title", nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String title;
 
-    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "address", nullable = false)
+    @Column(nullable = false)
     private String address;
 
-    @Column(name = "city", nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String city;
 
-    @Column(name = "state", nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String state;
 
-    @Column(name = "zip_code", nullable = false, length = 20)
+    @Column(nullable = false, length = 20)
     private String zipCode;
 
-    @Column(name = "country", nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String country;
 
-    @Column(name = "price_per_night", nullable = false, precision = 10, scale = 2)
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal pricePerNight;
 
-    @Column(name = "property_type", nullable = false, length = 50)
+    @Column(nullable = false, length = 50)
     private String propertyType;
 
-    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "landlord_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "landlordId", referencedColumnName = "userId", insertable = false, updatable = false)
     private User landlord;
 
     // Constructors

@@ -25,7 +25,6 @@ public class User {
     @Column(nullable = false, length = 20)
     private String role;
 
-    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
@@ -51,7 +50,6 @@ public class User {
     }
 
     // Getters and setters
-
     public Long getUserId() {
         return userId;
     }

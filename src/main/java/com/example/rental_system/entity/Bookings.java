@@ -35,11 +35,11 @@ public class Bookings {
     private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tenant_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "tenantId", referencedColumnName = "userId", insertable = false, updatable = false)
     private User tenant;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "property_id", referencedColumnName = "property_id", insertable = false, updatable = false)
+    @JoinColumn(name = "propertyId", referencedColumnName = "propertyId", insertable = false, updatable = false)
     private Property property;
 
     // Constructors
